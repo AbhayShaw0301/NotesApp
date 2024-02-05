@@ -29,3 +29,17 @@ export async function createNote(note: NoteInput): Promise<Note> {
         });
     return response.json();
 }
+export async  function  updateNote(noteId:string,note:NoteInput):Promise<Note>{
+    const response = await fetchData("http://localhost:5000/api/notes/"+noteId,{
+        method:"PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(note),
+    })
+    return response.json();
+}
+
+export async function  deleteNote(noteId:string ){
+await fetchData("http://localhost:5000/api/notes/"+ noteId ,{method:"DELETE"});
+}
