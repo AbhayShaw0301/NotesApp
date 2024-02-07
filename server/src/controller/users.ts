@@ -11,7 +11,7 @@ export const getAuthenticatedUser: RequestHandler = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
 
 interface SignUpBody {
     username?: string,

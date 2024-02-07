@@ -40,12 +40,13 @@ interface createNoteBody {
 export const createNotes: RequestHandler<unknown, unknown, createNoteBody, unknown> = async (req, res, next) => {
     const title = req.body.title;
     const text = req.body.text;
+    const authenticatedUserId = req.session.userId;
     try {
         if (!title) {
             throw createHttpError(400, "Note must have a title");
         }
         const newNote = await NoteModel.create({
-
+            userId: authenticatedUserId,
             title: title,
             text: text,
         });

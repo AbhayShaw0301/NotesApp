@@ -80,7 +80,6 @@ export interface LoginCredentials {
 export async function login(credentials: LoginCredentials): Promise<User> {
     const response = await fetchData("http://localhost:5000/api/users/login", {
         method: "POST",
-        credentials: 'include',
         headers: {
             "Content-Type": "application/json",
         },
