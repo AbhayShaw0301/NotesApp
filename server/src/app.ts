@@ -10,15 +10,28 @@ import env from "../src/util/validateEnv";
 import MongoStore from "connect-mongo";
 
 const app = express();
-app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(morgan("dev"));
+
+const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    allowedHeaders: "Content-Type,Authorization",
+    exposedHeaders: "Authorization",
+};
+
+
+app.use(cors(corsOptions));
+
 app.use(session({
     secret: env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60 * 60 * 1000,
+        maxAge: 20 * 60 * 60 * 1000,
     },
     rolling: true,
     store: MongoStore.create({
@@ -34,7 +47,7 @@ app.use((req, res, next) => {
 // @ts-ignore
 app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
     console.error(error);
-    let errorMessage = "An unkown error occurred";
+    let errorMessage = "An unknown error occurred";
     let statusCode = 500;
     if (isHttpError(error)) {
         statusCode = error.status;

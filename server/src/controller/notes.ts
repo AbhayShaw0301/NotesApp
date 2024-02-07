@@ -1,9 +1,7 @@
 import NoteModel from "../models/note";
-import {RequestHandler, text} from "express";
+import {RequestHandler} from "express";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
-import notes from "../routes/notes";
-import Notes from "../routes/notes";
 
 export const getNotes: RequestHandler = async (req, res, next) => {
     try {
