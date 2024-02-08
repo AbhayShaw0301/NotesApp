@@ -79,7 +79,8 @@ Before you begin, make sure you have the following installed:
 
 - Once both servers are running, open your browser.
 - Enter `localhost:3000` in the address bar to access the NoteSy application.
-
+   ## Demo
+https://github.com/AbhayShaw0301/NotesApp/assets/148813870/c6cb6101-cdab-457e-bd7f-320de006ceb6
 ## Contributing
 
 Contributions are welcome! If you want to contribute to this project, feel free to fork the repository and submit a pull request.
